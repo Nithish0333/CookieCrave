@@ -1,0 +1,1 @@
+The ngrok process errored on start: failed to send authentication request: session closed.
