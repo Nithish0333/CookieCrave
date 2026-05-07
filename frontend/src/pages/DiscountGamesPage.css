@@ -1,0 +1,285 @@
+/* Discount Games Page - Premium Design Styles */
+
+.discount-games-page {
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.game-selector-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.game-selector-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  background: white;
+}
+
+.game-selector-card.locked {
+  filter: grayscale(0.8) opacity(0.7);
+}
+
+.locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.icon-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Game Stage Elements */
+.wheel-wrapper {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  padding: 10px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(0,0,0,0.1);
+}
+
+.wheel-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 8px solid #333;
+  transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+  /* 7 segments: 360 / 7 = 51.428deg each */
+  background: conic-gradient(
+    #FF6B6B 0deg 51.43deg,
+    #FFD93D 51.43deg 102.86deg,
+    #6BCB77 102.86deg 154.29deg,
+    #4D96FF 154.29deg 205.71deg,
+    #9747FF 205.71deg 257.14deg,
+    #FF4DE8 257.14deg 308.57deg,
+    #FFA07A 308.57deg 360deg
+  );
+}
+
+.wheel-circle.spinning {
+  transform: rotate(2160deg);
+}
+
+.wheel-slice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 30px;
+  transform-origin: center center;
+  /* Rotate each label to the center of its slice */
+  transform: rotate(calc(var(--slice-index) * (360deg / 7) + (360deg / 14)));
+  pointer-events: none;
+}
+
+.wheel-slice span {
+  font-weight: 800;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  font-size: 1.2rem;
+}
+
+.wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 6px solid #333;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.wheel-pin {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 36px;
+  background: #ef4444;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  z-index: 20;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Scratch Card Tiles */
+.scratch-grid-wrap {
+  max-width: 400px;
+}
+
+.scratch-tile-btn {
+  aspect-ratio: 1;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.tile-surface {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+
+.scratch-tile-btn.revealed .tile-surface {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tile-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-content .val { font-weight: 900; font-size: 1.5rem; color: #1e293b; line-height: 1; }
+.tile-content .lab { font-size: 0.75rem; font-weight: bold; color: #64748b; }
+
+/* Memory Card */
+.memory-grid-wrap { max-width: 380px; }
+
+.memory-card-btn {
+  aspect-ratio: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.memory-card-btn.flipped { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card-front {
+  background: #475569;
+  background-image: radial-gradient(#64748b 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.card-back {
+  background: white;
+  transform: rotateY(180deg);
+  border: 2px solid #e2e8f0;
+}
+
+/* Rewards Sidebar */
+.rewards-sidebar {
+  z-index: 100 !important; /* Below navbar (1020) but above cards */
+}
+
+.reward-card {
+  background: white;
+  border-radius: 16px;
+  border-left: 4px solid #10b981;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: all 0.2s;
+}
+
+.reward-card:hover { transform: scale(1.02); }
+
+.extra-small { font-size: 0.7rem; }
+
+/* Winner Modal */
+.winner-card {
+  border-radius: 32px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+.status-icon { font-size: 4rem; }
+
+.discount-seal-badge {
+  width: 140px;
+  height: 140px;
+  background: #fbbf24;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px dashed white;
+  box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
+}
+
+.seal-inner { display: flex; flex-direction: column; color: white; }
+
+.translate-y-pulse {
+  animation: transformPulse 2s infinite;
+}
+
+@keyframes transformPulse {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* Transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.hover-primary:hover {
+  color: #2563eb !important;
+}
+
+.hover-scale:hover {
+  transform: scale(1.1);
+}
